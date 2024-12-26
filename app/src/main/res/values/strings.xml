@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">VoicerApp</string>
+    <string name="voicer_logo">Voicer Logo</string>
+    <string name="start_message">Diga "<b>"INICIAR"</b>" para entrar</string>
+    <string name="factoring">Voicer do Brasil LTDA</string>
+    <string name="version">Versão:</string>
+    <string name="version_number">0.0.1alpha</string>
+    <string name="welcome_message">Bem vindo ao Voicer!</string>
+</resources>
