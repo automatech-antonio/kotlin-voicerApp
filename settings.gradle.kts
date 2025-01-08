@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "VoicerApp"
 include(":app")
+include(":models")
