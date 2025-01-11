@@ -1,6 +1,6 @@
 package tech.voicer.voicerapp.infra.stt
 
-import tech.voicer.voicerapp.core.EventActions
+import tech.voicer.voicerapp.core.events.EventActions
 
 class Resolver {
   private val events = EventActions.getInstance()

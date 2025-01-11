@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import tech.voicer.voicerapp.domain.StartupUseCase
-import tech.voicer.voicerapp.infra.Http
 import tech.voicer.voicerapp.infra.Stt
 import tech.voicer.voicerapp.infra.Tts
 import tech.voicer.voicerapp.infra.api.Backend
@@ -28,9 +27,8 @@ class MainActivity : AppCompatActivity() {
       insets
     }
 
-    val backend = Backend(Http.getInstance().getClient())
     MainScope().launch {
-      backend.infoService()
+      Backend().getInfoService()
         .onSuccess {
           res -> Log.d("Main Activity", res.recordset.toString())
           Tts(this@MainActivity, Messages.WELCOME.text)
@@ -38,7 +36,7 @@ class MainActivity : AppCompatActivity() {
           StartupUseCase(this@MainActivity)
         }
         .onError {
-          err -> Log.e("Main Activity", err.toString())
+          err, _ -> Log.e("Main Activity", err.toString())
           Tts(this@MainActivity, Messages.BACKEND_ERROR.text)
         }
     }

@@ -1,4 +1,4 @@
-package tech.voicer.voicerapp.core
+package tech.voicer.voicerapp.core.stages
 
 import tech.voicer.voicerapp.core.enums.Applications
 import tech.voicer.voicerapp.core.enums.Modules

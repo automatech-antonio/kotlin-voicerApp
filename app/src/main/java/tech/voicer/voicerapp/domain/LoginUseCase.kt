@@ -1,9 +1,8 @@
 package tech.voicer.voicerapp.domain
 
 import android.app.Activity
-import tech.voicer.voicerapp.MainActivity
-import tech.voicer.voicerapp.core.Stage
-import tech.voicer.voicerapp.core.Stages
+import tech.voicer.voicerapp.core.stages.Stage
+import tech.voicer.voicerapp.core.stages.Stages
 import tech.voicer.voicerapp.core.enums.Applications
 import tech.voicer.voicerapp.core.enums.Modules
 import tech.voicer.voicerapp.core.enums.Steps

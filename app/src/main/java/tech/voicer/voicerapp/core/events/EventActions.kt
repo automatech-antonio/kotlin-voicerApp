@@ -1,7 +1,8 @@
-package tech.voicer.voicerapp.core
+package tech.voicer.voicerapp.core.events
 
+import tech.voicer.voicerapp.core.stages.StageVariation
+import tech.voicer.voicerapp.core.stages.Stages
 import tech.voicer.voicerapp.core.enums.VerbalCommands
-import java.lang.invoke.MethodHandle
 
 data class VerbalEvent(val activeStage: StageVariation, val command: VerbalCommands, val fnAction: () -> Unit)
 data class NumericEvent(val activeStage: StageVariation, val fnAction: Function<Unit>)

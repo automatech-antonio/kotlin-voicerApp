@@ -3,10 +3,10 @@ package tech.voicer.voicerapp.infra.api
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ApiResult<T>(
+data class ApiResponse<T>(
   val result: Boolean?,
   val recordset: T?,
-  val recordsets: List<T>?,
+  val recordsets: List<T?>?,
   val error: String?
 )
 

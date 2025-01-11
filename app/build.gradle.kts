@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("plugin.serialization") version "2.1.0"
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.room)
 }
 
 android {
@@ -38,6 +40,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 val ktorVersion: String by project
@@ -61,4 +67,7 @@ dependencies {
     implementation(libs.slf4j.android)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.dotenv.kotlin)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }
