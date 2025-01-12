@@ -9,6 +9,10 @@ class ConfigurationRepository(private val dao: ConfigurationDao) {
     val entity = config.toConfigurationEntity()
     dao.save(entity)
   }
+
+  suspend fun clear() {
+    dao.deleteAll()
+  }
 }
 
 fun Configuration.toConfigurationEntity() = ConfigurationEntity(

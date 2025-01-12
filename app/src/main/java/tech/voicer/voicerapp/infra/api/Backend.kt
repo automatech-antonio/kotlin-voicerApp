@@ -12,6 +12,6 @@ class Backend() {
     return apiExecute<ServerInfo>(client, ApiRequest(false, HttpMethod.Get, null))
   }
   suspend fun getConfigurations(): Result<ApiResponse<Configuration>, ApiResponseError> {
-    return apiExecute(client, ApiRequest(false, HttpMethod.Get, "configurations"))
+    return apiExecute(client, ApiRequest(true, HttpMethod.Get, "configurations"))
   }
 }

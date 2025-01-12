@@ -1,6 +1,7 @@
 package tech.voicer.voicerapp.database
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -29,7 +30,7 @@ class Db private constructor() : Application() {
     super.onCreate()
   }
 
-  fun getDb(): RoomDatabase.Builder<VoicerDB> {
-    return Room.databaseBuilder(applicationContext, VoicerDB::class.java, "voicer.db")
+  fun getDb(context: Context): VoicerDB {
+    return Room.databaseBuilder(context, VoicerDB::class.java, "voicer.db").build()
   }
 }
