@@ -1,4 +1,4 @@
-package tech.voicer.voicerapp.core.enums
+package tech.voicer.voicerapp.infra.stt.shared
 
 enum class VerbalCommands(val text: String) {
   SYS_START("iniciar"),

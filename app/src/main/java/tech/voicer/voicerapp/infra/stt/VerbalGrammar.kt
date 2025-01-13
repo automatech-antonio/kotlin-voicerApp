@@ -1,10 +1,17 @@
 package tech.voicer.voicerapp.infra.stt
 
 import org.json.JSONArray
-import tech.voicer.voicerapp.core.enums.VerbalCommands
+import tech.voicer.voicerapp.infra.stt.shared.VerbalCommands
 
-class VerbalGrammar {
+class VerbalGrammar private constructor(){
   private val verbalGrammar: MutableList<VerbalCommands> = mutableListOf()
+
+  companion object {
+    @Volatile private var instance: VerbalGrammar? = null
+    fun getInstance() = instance ?: synchronized(this) {
+      instance ?: VerbalGrammar().also { instance = it }
+    }
+  }
 
   init {
     verbalGrammar.add(VerbalCommands.SYS_START)
@@ -15,6 +22,7 @@ class VerbalGrammar {
     val commands = verbalGrammar.map { command -> command.text }.toTypedArray()
     return JSONArray(commands).toString()
   }
+
   fun isVerbal(data: String): Boolean {
     if (verbalGrammar.isEmpty()) return false
     for (tk in verbalGrammar) {

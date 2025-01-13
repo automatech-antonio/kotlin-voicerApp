@@ -46,7 +46,7 @@ class Stt(private var activity: Activity) : RecognitionListener {
       "model-pt-br",
       "model",
       { mdl ->
-        val gr = VerbalGrammar()
+        val gr = VerbalGrammar.getInstance()
         val rec = Recognizer(mdl, 16000.0f, gr.getGrammar())
         speechService = SpeechService(rec, 16000.0f)
         speechService.startListening(this)

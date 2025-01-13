@@ -13,10 +13,10 @@ import tech.voicer.voicerapp.core.enums.Applications
 import tech.voicer.voicerapp.core.enums.Modules
 import tech.voicer.voicerapp.core.enums.StageVariationType
 import tech.voicer.voicerapp.core.enums.Steps
-import tech.voicer.voicerapp.core.enums.VerbalCommands
+import tech.voicer.voicerapp.infra.stt.shared.VerbalCommands
 import tech.voicer.voicerapp.database.Db
-import tech.voicer.voicerapp.database.VoicerDB
 import tech.voicer.voicerapp.database.repositories.ConfigurationRepository
+import tech.voicer.voicerapp.database.repositories.UserRepository
 import tech.voicer.voicerapp.infra.api.Backend
 import tech.voicer.voicerapp.shared.onError
 import tech.voicer.voicerapp.shared.onSuccess
@@ -25,11 +25,11 @@ class StartupUseCase(private val activity: Activity) {
   private val stage = Stages.getInstance()
   private val event = EventActions.getInstance()
   private val context = activity.applicationContext
+  private val db = Db.getInstance().getDb(context)
 
   init {
     val basicStage = Stage(Applications.PICKING, Modules.STARTUP, Steps.NULL)
     val basicVariation = StageVariation(StageVariationType.IS, basicStage)
-    val db = Db.getInstance().getDb(context)
 
     MainScope().launch {
       Backend().getConfigurations()
@@ -48,7 +48,17 @@ class StartupUseCase(private val activity: Activity) {
   }
 
   private fun start() {
-    // Verificar se existe algum usuário salvo com um token válido
-    // Se existir ->
+    /* Verificar se existe algum usuário salvo com um token válido
+
+    */
+    MainScope().launch {
+      val currentUser = UserRepository(db.userDao()).getUser()
+      if (currentUser == null) {
+        Log.d("Start Application", "Não foi encontrado nenhum usuário, Login ncessário!")
+        LoginUseCase(activity)
+      } else {
+        Log.d("Start Application", "Validando token do usuário!")
+      }
+    }
   }
 }
